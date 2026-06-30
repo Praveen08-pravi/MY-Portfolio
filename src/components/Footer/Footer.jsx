@@ -30,7 +30,7 @@ function Footer() {
         </a>
 
         <a
-          href="https://www.linkedin.com/in/your-linkedin-profile"
+          href="https://www.linkedin.com/in/praveen-u-110820352"
           target="_blank"
           rel="noopener noreferrer"
         >
