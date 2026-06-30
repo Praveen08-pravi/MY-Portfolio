@@ -1,0 +1,151 @@
+/* Navbar styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--section);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid var(--border);
+    z-index:1000;
+    transition:.3s;
+}
+
+.navbar.active {
+  background: rgba(5, 8, 22, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.logo {
+  color: var(--text);
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+}
+
+.nav-links li {
+  color: var(--text);
+  cursor: pointer;
+}
+
+.nav-links li:hover,
+.active-link {
+  color: var(--primary);
+}
+
+.nav-links a{
+    color:var(--text);
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:var(--primary);
+}
+
+.resume-btn {
+  padding: 10px 24px;
+  background: var(--primary);
+  border-radius: 30px;
+  color: var(--text);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.resume-btn:hover {
+  background: #6d28d9;
+}
+
+.menu-icon {
+  display: none;
+  color: var(--text);
+  font-size: 28px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 75px;
+    left: -100%;
+    width: 100%;
+    background: var(--bg);
+    flex-direction: column;
+    padding: 25px 0;
+    transition: 0.4s;
+  }
+
+  .nav-links.active {
+    left: 0;
+  }
+}
+.nav-links .active{
+    color: var(--primary);
+    font-weight: 700;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 5px;
+}
+.resume-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 50px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.resume-btn:hover {
+  transform: translateY(-3px);
+  background: #1d4ed8;
+  box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4);
+}
+
+.resume-btn:active {
+  transform: scale(0.98);
+}
+.btn {
+  padding: 10px 18px;
+  background: #2563eb;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  transition: 0.3s ease;
+  border: none;
+}
+
+.btn:hover {
+  background: #1d4ed8;
+  transform: scale(1.05);
+}
