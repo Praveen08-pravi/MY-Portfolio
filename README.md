@@ -92,7 +92,7 @@ npm install
 Create a `.env` file in the backend directory:
 
 ```env
-MONGO_URI=mongodb://localhost:27017/praveen-portfolio
+MONGO_URI=mongodb URL
 EMAIL_SERVICE=gmail
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASSWORD=your-app-password
