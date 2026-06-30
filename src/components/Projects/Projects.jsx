@@ -11,8 +11,8 @@ const projects = [
     image: portfolioImg,
     description:
       "A modern portfolio website built using React with smooth animations and responsive design.",
-    tech: ["React", "CSS", "Framer Motion"],
-    github: "https://github.com/Praveen08-pravi",
+    tech: ["React.js", "CSS", "Express.js","javascript","HTML","Node.js","MongoDB"],
+    github: "https://github.com/Praveen08-pravi/MY-Portfolio.git",
     live: "#",
   },
 
@@ -21,7 +21,7 @@ const projects = [
     image: snapcartImg,
     description:
       "A full-stack e-commerce web application built using the MERN Stack. It allows users to browse products, manage a shopping cart, authenticate securely, and place orders.",
-    tech: ["React", "Node.js", "Express.js", "MongoDB", "JWT"],
+    tech: ["React", "Node.js", "Express.js", "MongoDB", "JWT","javascript","HTML","CSS"],
     github: "https://github.com/Praveen08-pravi/snapcart",
     live: "https://snapcart-store.netlify.app/",
   },

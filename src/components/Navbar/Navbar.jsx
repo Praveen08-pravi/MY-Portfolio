@@ -19,7 +19,7 @@ function Navbar() {
 
   return (
     <nav className={scrolled ? "navbar active" : "navbar"}>
-      <h2 className="logo">Praveen U</h2>
+      <h2 className="logo">ElevateDev</h2>
 
       <ul className={menuOpen ? "nav-links active" : "nav-links"}>
         <li>
