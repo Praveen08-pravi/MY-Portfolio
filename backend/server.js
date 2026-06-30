@@ -21,7 +21,16 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.json());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://praveenuportfolio.netlify.app/",
+    ],
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
 app.use("/api/contact", contactRoutes);
 
