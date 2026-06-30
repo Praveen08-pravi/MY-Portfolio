@@ -11,27 +11,25 @@ const contactRoutes = require("./routes/contactRoutes");
 
 const app = express();
 
+// Connect Database
 connectDB();
 
 // Middleware
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
-    methods: ["GET", "POST"],
-    credentials: true,
-  })
-);
-app.use(
-  cors({
     origin: [
       "http://localhost:5173",
-      "https://praveenuportfolio.netlify.app/",
+      "https://praveenuportfolio.netlify.app",
     ],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "OPTIONS"],
     credentials: true,
   })
 );
 
+// ✅ This line was missing
+app.use(express.json());
+
+// Routes
 app.use("/api/contact", contactRoutes);
 
 // Home Route
@@ -43,7 +41,7 @@ app.get("/", (req, res) => {
 app.get("/api/test", (req, res) => {
   res.json({
     success: true,
-    message: "Backend API is Working Successfully!"
+    message: "Backend API is Working Successfully!",
   });
 });
 
