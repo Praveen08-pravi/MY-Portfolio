@@ -7,7 +7,6 @@ const createContact = async (req, res) => {
 
     const { name, email, subject, message } = req.body;
 
-    // 🔴 Basic validation
     if (!name || !email || !subject || !message) {
       return res.status(400).json({
         success: false,
@@ -15,17 +14,8 @@ const createContact = async (req, res) => {
       });
     }
 
-    // 🔴 Extra email safety check (IMPORTANT)
-    if (!email || typeof email !== "string") {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid email",
-      });
-    }
-
     console.log("EMAIL FIELD:", email);
 
-    // Save to DB
     const contact = await Contact.create({
       name,
       email,
@@ -33,36 +23,28 @@ const createContact = async (req, res) => {
       message,
     });
 
-    // 📩 Send email to admin
+    // Admin email
     await sendEmail({
-      to: process.env.PORTFOLIO_EMAIL, // IMPORTANT
+      to: process.env.PORTFOLIO_EMAIL,
       subject: "📩 New Portfolio Contact",
       html: `
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
+        <p><strong>Message:</strong> ${message}</p>
       `,
     });
 
-    // 📩 Send confirmation email to user
+    // User email
     await sendEmail({
-      to: email?.trim(), // IMPORTANT FIX
+      to: email.trim(),
       subject: "Thank you for contacting me!",
       html: `
         <h2>Hello ${name},</h2>
-
-        <p>Thank you for contacting me through my portfolio.</p>
-
-        <p>I have received your message and will get back to you soon.</p>
-
-        <br>
-
-        <p>Regards,</p>
-        <h3>Praveen U</h3>
-        <p>Full Stack Developer</p>
+        <p>Thanks for contacting me. I will reply soon.</p>
+        <br/>
+        <p>Regards,<br/>Praveen U</p>
       `,
     });
 
