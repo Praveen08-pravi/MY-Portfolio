@@ -3,10 +3,11 @@ const sendEmail = require("../utils/sendEmail");
 
 const createContact = async (req, res) => {
   try {
-    console.log(req.body);
+    console.log("CONTACT BODY:", req.body);
 
     const { name, email, subject, message } = req.body;
 
+    // 🔴 Basic validation
     if (!name || !email || !subject || !message) {
       return res.status(400).json({
         success: false,
@@ -14,6 +15,17 @@ const createContact = async (req, res) => {
       });
     }
 
+    // 🔴 Extra email safety check (IMPORTANT)
+    if (!email || typeof email !== "string") {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid email",
+      });
+    }
+
+    console.log("EMAIL FIELD:", email);
+
+    // Save to DB
     const contact = await Contact.create({
       name,
       email,
@@ -21,9 +33,9 @@ const createContact = async (req, res) => {
       message,
     });
 
-    // Send email notification to admin
+    // 📩 Send email to admin
     await sendEmail({
-      to: process.env.EMAIL_USER,
+      to: process.env.PORTFOLIO_EMAIL, // IMPORTANT
       subject: "📩 New Portfolio Contact",
       html: `
         <h2>New Contact Form Submission</h2>
@@ -35,43 +47,39 @@ const createContact = async (req, res) => {
       `,
     });
 
-    // Send confirmation email to visitor
+    // 📩 Send confirmation email to user
     await sendEmail({
-      to: email,
+      to: email?.trim(), // IMPORTANT FIX
       subject: "Thank you for contacting me!",
       html: `
         <h2>Hello ${name},</h2>
 
         <p>Thank you for contacting me through my portfolio.</p>
 
-        <p>I have received your message and will get back to you as soon as possible.</p>
+        <p>I have received your message and will get back to you soon.</p>
 
         <br>
 
         <p>Regards,</p>
-
         <h3>Praveen U</h3>
-
         <p>Full Stack Developer</p>
       `,
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "Message Sent Successfully",
       contact,
     });
 
   } catch (error) {
-    console.log(error);
+    console.log("ERROR:", error);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: error.message,
     });
   }
 };
 
-module.exports = {
-  createContact,
-};
+module.exports = { createContact };
