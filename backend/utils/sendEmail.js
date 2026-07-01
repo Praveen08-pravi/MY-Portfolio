@@ -8,26 +8,16 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  tls: {
-    rejectUnauthorized: false,
-  },
-  family: 4, // 🔥 FORCE IPv4 (fix ENETUNREACH issue)
+  family: 4,
 });
 
 const sendEmail = async ({ to, subject, html }) => {
-  try {
-    await transporter.sendMail({
-      from: `"Praveen Portfolio" <${process.env.EMAIL_USER}>`,
-      to,
-      subject,
-      html,
-    });
-
-    console.log("Email sent successfully");
-  } catch (error) {
-    console.error("Email error:", error.message);
-    throw error;
-  }
+  await transporter.sendMail({
+    from: `"Portfolio" <${process.env.EMAIL_USER}>`,
+    to,
+    subject,
+    html,
+  });
 };
 
 module.exports = sendEmail;
