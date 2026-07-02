@@ -13,7 +13,7 @@ const projects = [
       "A modern portfolio website built using React with smooth animations and responsive design.",
     tech: ["React.js", "CSS", "Express.js","javascript","HTML","Node.js","MongoDB"],
     github: "https://github.com/Praveen08-pravi/MY-Portfolio.git",
-    live: "#",
+    live: "https://praveenuportfolio.netlify.app/",
   },
 
   {

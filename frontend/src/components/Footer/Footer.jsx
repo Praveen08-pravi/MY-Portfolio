@@ -41,7 +41,7 @@ function Footer() {
       <hr />
 
       <p className="copyright">
-        © 2026 Praveen U. Made with <FaHeart className="heart" /> using React.
+        © 2026 Praveen U. Made with <FaHeart className="heart" /> Building ideas into digital experiences. 🚀
       </p>
     </footer>
   );
